@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div>
+            <select>
+                <option value="driving">Driving</option>
+                <option value="flying">Flying</option>
+                
+            </select>
+        </div>
+        <h1>Emission Calculator</h1>
+        <p> Here you can get a rough estimate of the emissions for your activities, such as driving, or flying.
+            It also gives you an idea, of how long how many trees need, to filter the CO2 emissions you produce.
+            <input type="number" placeholder="Enter value(in km)" id="inputValue">
+            <input type="number" placeholder="Passengers (Car)" id="passengers" value="1">
+            <button onclick="calculateEmissions()">Calculate</button> 
+</p>
+
+            <div id="result"></div>
+
+<script>
+            function calculateEmissions() { 
+                const inputValue = document.getElementById('inputValue').value;
+                const passengers = document.getElementById('passengers').value;
+                const selectedOption = document.querySelector('select').value;
+                let emissions;
+
+                if (selectedOption === 'driving') {
+                    emissions = inputValue * 0.2 / passengers; // Example emission factor for driving
+                } else if (selectedOption === 'flying') {
+                    emissions = inputValue * 0.15; // Example emission factor for flying
+                }
+
+                const treesNeeded = emissions / 21; // Example: 1 tree absorbs 21 kg of CO2 per year
+                const treesYear = treesNeeded * 1; // Assuming 1 year for simplicity
+               const treesMonth = emissions / (21 / 12);
+
+                document.getElementById('result').innerHTML = document.getElementById('result').innerHTML = `Estimated Emissions: ${emissions.toFixed(2)} kg CO2<br>Trees needed in one month: ${Math.ceil(treesMonth)} trees<br>Trees needed in one year: ${Math.ceil(treesYear)} trees`;
+            }
+                </script>
+    </body>
+</html>
