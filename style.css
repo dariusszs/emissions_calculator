@@ -1,41 +1,95 @@
 :root {
-  --eco-bg: #f5f2eb;        /* Warm paper/linen tone */
-  --eco-surface: #ffffff;   /* Clean card surface */
-  --eco-text: #2c3631;      /* Dark moss gray for readability */
-  --eco-primary: #4a6b5d;   /* Soft sage green */
-  --eco-accent: #b87d4b;    /* Terracotta as a warm contrast */
-  --eco-border: #e3ded2;    /* Subtle line color */
+  --eco-bg: #f5f2eb;
+  --eco-surface: #ffffff;
+  --eco-text: #2c3631;
+  --eco-primary: #4a6b5d;
+  --eco-accent: #b87d4b;
+  --eco-border: #e3ded2;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
   background-color: var(--eco-bg);
   color: var(--eco-text);
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif; /* Classic, organic touch */
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   line-height: 1.7;
 }
 
-/* Cards with soft, rounded corners */
 .eco-card {
+  width: min(100%, 720px);
   background-color: var(--eco-surface);
   border: 1px solid var(--eco-border);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 2.5rem;
-  box-shadow: 0 10px 30px rgba(44, 54, 49, 0.03);
+  box-shadow: 0 10px 30px rgba(44, 54, 49, 0.08);
 }
 
-/* Organic, rounded buttons */
+h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+p {
+  margin: 0 0 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--eco-border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--eco-text);
+  font-size: 1rem;
+}
+
+select:focus,
+input:focus {
+  outline: 2px solid rgba(74, 107, 93, 0.2);
+  border-color: var(--eco-primary);
+}
+
 .eco-button {
   background-color: var(--eco-primary);
   color: #ffffff;
   font-family: system-ui, -apple-system, sans-serif;
-  font-weight: 500;
-  padding: 0.8rem 1.8rem;
+  font-weight: 600;
+  padding: 0.9rem 1.8rem;
   border: none;
-  border-radius: 50px; /* Pill shape looks friendly & natural */
+  border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease, transform 0.15s ease;
 }
 
 .eco-button:hover {
   background-color: #3b5549;
+}
+
+.eco-button:active {
+  transform: translateY(1px);
+}
+
+#result {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: rgba(74, 107, 93, 0.06);
+  border: 1px solid rgba(74, 107, 93, 0.12);
+  line-height: 1.8;
 }

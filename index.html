@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <body>
-        <div>
-            <select>
-                <option value="driving">Driving</option>
-                <option value="flying">Flying</option>
-                
-            </select>
-        </div>
-        <h1>Emission Calculator</h1>
-        <p> Here you can get a rough estimate of the emissions for your activities, such as driving, or flying.
-            It also gives you an idea, of how long how many trees need, to filter the CO2 emissions you produce.
-            <input type="number" placeholder="Enter value(in km)" id="inputValue">
-            <input type="number" placeholder="Passengers (Car)" id="passengers" value="1">
-            <button onclick="calculateEmissions()">Calculate</button> 
-</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emission Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="eco-card">
+      <h1>Emission Calculator</h1>
+      <p>
+        Here you can get a rough estimate of the emissions for your activities, such as driving or flying.
+        It also gives you an idea of how many trees are needed to offset the CO2 emissions you produce.
+      </p>
 
-            <div id="result"></div>
+      <div class="form-grid">
+        <select aria-label="Travel mode">
+          <option value="driving">Driving</option>
+          <option value="flying">Flying</option>
+        </select>
 
-<script>
-            function calculateEmissions() { 
-                const inputValue = document.getElementById('inputValue').value;
-                const passengers = document.getElementById('passengers').value;
-                const selectedOption = document.querySelector('select').value;
-                let emissions;
+        <input type="number" placeholder="Enter value (in km)" id="inputValue" min="0" step="any" />
+        <input type="number" placeholder="Passengers (Car)" id="passengers" value="1" min="1" step="1" />
 
-                if (selectedOption === 'driving') {
-                    emissions = inputValue * 0.2 / passengers; // Example emission factor for driving
-                } else if (selectedOption === 'flying') {
-                    emissions = inputValue * 0.15; // Example emission factor for flying
-                }
+        <button class="eco-button" onclick="calculateEmissions()" type="button">Calculate</button>
+      </div>
 
-                const treesNeeded = emissions / 21; // Example: 1 tree absorbs 21 kg of CO2 per year
-                const treesYear = treesNeeded * 1; // Assuming 1 year for simplicity
-               const treesMonth = emissions / (21 / 12);
+      <div id="result">Results will appear here.</div>
+    </main>
 
-                document.getElementById('result').innerHTML = document.getElementById('result').innerHTML = `Estimated Emissions: ${emissions.toFixed(2)} kg CO2<br>
-                Trees needed in one month: ${Math.ceil(treesMonth)} trees<br>
-                Trees needed in one year: ${Math.ceil(treesYear)} trees`;
-            }
-                </script>
-    </body>
+    <script>
+      function calculateEmissions() {
+        const inputValue = Number(document.getElementById('inputValue').value || 0);
+        const passengers = Number(document.getElementById('passengers').value || 1);
+        const selectedOption = document.querySelector('select').value;
+
+        let emissions = 0;
+
+        if (selectedOption === 'driving') {
+          const safePassengers = passengers > 0 ? passengers : 1;
+          emissions = (inputValue * 0.2) / safePassengers;
+        } else if (selectedOption === 'flying') {
+          emissions = inputValue * 0.15;
+        }
+
+        const treesNeeded = emissions / 21;
+        const treesYear = treesNeeded;
+        const treesMonth = emissions / (21 / 12);
+
+        document.getElementById('result').innerHTML = `Estimated Emissions: ${emissions.toFixed(2)} kg CO2<br>
+        Trees needed in one month: ${Math.ceil(treesMonth)} trees<br>
+        Trees needed in one year: ${Math.ceil(treesYear)} trees`;
+      }
+    </script>
+  </body>
 </html>
