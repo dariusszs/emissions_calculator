@@ -1,0 +1,41 @@
+:root {
+  --eco-bg: #f5f2eb;        /* Warm paper/linen tone */
+  --eco-surface: #ffffff;   /* Clean card surface */
+  --eco-text: #2c3631;      /* Dark moss gray for readability */
+  --eco-primary: #4a6b5d;   /* Soft sage green */
+  --eco-accent: #b87d4b;    /* Terracotta as a warm contrast */
+  --eco-border: #e3ded2;    /* Subtle line color */
+}
+
+body {
+  background-color: var(--eco-bg);
+  color: var(--eco-text);
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif; /* Classic, organic touch */
+  line-height: 1.7;
+}
+
+/* Cards with soft, rounded corners */
+.eco-card {
+  background-color: var(--eco-surface);
+  border: 1px solid var(--eco-border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(44, 54, 49, 0.03);
+}
+
+/* Organic, rounded buttons */
+.eco-button {
+  background-color: var(--eco-primary);
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  padding: 0.8rem 1.8rem;
+  border: none;
+  border-radius: 50px; /* Pill shape looks friendly & natural */
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.eco-button:hover {
+  background-color: #3b5549;
+}
